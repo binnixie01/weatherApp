@@ -1,0 +1,22 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "weather app ",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "show": "git subtree push --prefix dist origin gh-pages"
+  },
+  "author": "Binson Thangjam",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^6.10.0",
+    "eslint": "^8.56.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "style-loader": "^3.3.4",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  }
+}
