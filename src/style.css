@@ -47,3 +47,18 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 10rem;
 }
+
+@media screen and (max-width: 600px) {
+  main {
+    gap: 2rem;
+
+    flex-direction: column;
+    margin-top: 0;
+  }
+  #left {
+    text-align: center;
+  }
+  #temperature {
+    font-size: 5rem;
+  }
+}
