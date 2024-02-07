@@ -1,0 +1,49 @@
+/* #weather{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+main {
+  display: flex;
+  justify-content: center;
+  gap: 10rem;
+  margin-top: 10rem;
+}
+
+#right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+#location-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-size: 14px;
+}
+#location-button {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+body {
+  margin: 0;
+}
+
+#temperature {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 10rem;
+}
