@@ -86,6 +86,11 @@ const displayWeather = async () => {
   } else {
     location.innerText =
       "error 404!!The place doesn't exist or is not in the database!!";
+    tempDiv.innerText = "";
+    condition.innerText = "";
+    weatherImage.src = "";
+    bgImage(data);
+    content.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
   }
 };
 
