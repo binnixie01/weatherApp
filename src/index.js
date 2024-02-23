@@ -55,28 +55,51 @@ function toTitleCase(str) {
     .toLowerCase()
     .replace(/(?:^|\s)\w/g, (match) => match.toUpperCase());
 }
+
 async function getWeather() {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=611c459610fd2350acf5d49c2372124b&units=metric`
+    );
+    if (!response.ok) {
+      return null;
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    // console.log(error);
+    return null;
+  }
+}
+
+const displayWeather = async () => {
   place = document.getElementById("location-input").value;
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=611c459610fd2350acf5d49c2372124b&units=metric`
-  );
-  const data = await response.json();
-  const imgSrc = data.weather[0].icon;
-  location.innerText = toTitleCase(place);
-  tempDiv.innerText = `${data.main.temp}°C`;
-  condition.innerText = toTitleCase(data.weather[0].description);
-  weatherImage.src = `https://openweathermap.org/img/wn/${imgSrc}@2x.png`;
-  bgImage(data);
-  content.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-}
+  const data = await getWeather(place);
+  if (data) {
+    const imgSrc = data.weather[0].icon;
+    location.innerText = toTitleCase(place);
+    tempDiv.innerText = `${data.main.temp}°C`;
+    condition.innerText = toTitleCase(data.weather[0].description);
+    weatherImage.src = `https://openweathermap.org/img/wn/${imgSrc}@2x.png`;
+    bgImage(data);
+    content.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+  } else {
+    location.innerText =
+      "error 404!!The place doesn't exist or is not in the database!!";
+  }
+};
 
-async function getAir() {
-  const response = await fetch(
-    `http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid=611c459610fd2350acf5d49c2372124b`
-  );
-  const data = await response.json();
-  console.log(data);
-}
+// async function getAir() {
+//   const response = await fetch(
+//     `http://api.openweathermap.org/data/2.5/air_pollution?lat=50&lon=50&appid=611c459610fd2350acf5d49c2372124b`
+//   );
+//   const data = await response.json();
+//   console.log(data);
+// }
 
-button.addEventListener("click", getWeather);
+button.addEventListener("click", displayWeather);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") displayWeather();
+  console.log(event.key);
+});
 bgImage();
